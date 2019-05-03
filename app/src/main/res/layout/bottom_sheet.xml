@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.circularreveal.CircularRevealLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/bottom_sheet"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bottom_view_expanded_background"
+    android:orientation="vertical"
+    app:behavior_hideable="false"
+    app:behavior_peekHeight="@dimen/video_menu_height"
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+    <com.google.android.material.circularreveal.CircularRevealRelativeLayout
+        android:id="@+id/video_surrounder"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/video_menu_height"
+        android:background="@drawable/bottom_item">
+
+        <com.google.android.material.circularreveal.CircularRevealRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/video_outer"
+            android:layout_width="@dimen/video_menu_height"
+            android:layout_height="@dimen/video_menu_height">
+
+            <VideoView
+                android:id="@+id/video_view"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true" />
+        </com.google.android.material.circularreveal.CircularRevealRelativeLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/video_menu_height"
+            android:layout_toEndOf="@id/video_outer">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/video_menu_height">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/video_name"
+                    style="@style/TextAppearance.AppCompat.Body2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="4dp"
+                    android:gravity="top"
+                    android:lines="1"
+                    android:text="Very long video name very long video name"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/share_button"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="2dp"
+                    android:padding="2dp"
+                    android:src="@drawable/share"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/video_name" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/stop_button"
+                    android:layout_width="38dp"
+                    android:layout_height="38dp"
+                    android:layout_alignStart="@+id/share_button"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginStart="8dp"
+                    android:padding="2dp"
+                    android:src="@android:drawable/ic_media_play"
+                    app:layout_constraintStart_toEndOf="@+id/share_button"
+                    app:layout_constraintTop_toBottomOf="@+id/video_name" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+
+    </com.google.android.material.circularreveal.CircularRevealRelativeLayout>
+
+</com.google.android.material.circularreveal.CircularRevealLinearLayout>
