@@ -1,4 +1,4 @@
-package com.nanicky.mediaviewer;
+package com.nanicky.mediaviewer.list;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,16 +8,19 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.nanicky.mediaviewer.R;
+import com.nanicky.mediaviewer.db.VideoDetails;
+
 import java.util.ArrayList;
 
 public class VideoListBaseAdapter extends BaseAdapter {
     private static ArrayList<VideoDetails> itemDetailsrrayList;
 
-    private LayoutInflater l_Inflater;
+    private LayoutInflater inflater;
 
     public VideoListBaseAdapter(Context context, ArrayList<VideoDetails> results) {
         itemDetailsrrayList = results;
-        l_Inflater = LayoutInflater.from(context);
+        inflater = LayoutInflater.from(context);
     }
 
     public int getCount() {
@@ -37,7 +40,7 @@ public class VideoListBaseAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder;
         if (convertView == null) {
-            convertView = l_Inflater.inflate(R.layout.video_item, null);
+            convertView = inflater.inflate(R.layout.video_item, null);
             holder = new ViewHolder();
             holder.Image = (ImageView) convertView.findViewById(R.id.adminpic1);
             holder.MsgType = (TextView) convertView.findViewById(R.id.msgtype1);
@@ -48,8 +51,8 @@ public class VideoListBaseAdapter extends BaseAdapter {
         }
 
         VideoDetails videoDetails = itemDetailsrrayList.get(position);
-        holder.Image.setImageBitmap(videoDetails.videoThumbNail); // you can set your setter here
-        holder.MsgType.setText(videoDetails.videoPath);
+        holder.Image.setImageBitmap(videoDetails.getVideoThumbNail()); // you can set your setter here
+        holder.MsgType.setText(videoDetails.getVideoPath());
 
         return convertView;
     }

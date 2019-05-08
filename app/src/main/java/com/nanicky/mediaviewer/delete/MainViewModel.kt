@@ -1,9 +1,10 @@
-package com.nanicky.mediaviewer
+package com.nanicky.mediaviewer.delete
 
 import androidx.databinding.Bindable
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.nanicky.mediaviewer.delete.FakeRepository
 
 
 class MainViewModel : ViewModel() {

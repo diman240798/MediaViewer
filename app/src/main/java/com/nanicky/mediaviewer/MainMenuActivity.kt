@@ -2,6 +2,8 @@ package com.nanicky.mediaviewer
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.nanicky.mediaviewer.fragments.MusicFragment
+import com.nanicky.mediaviewer.fragments.VideoFragment
 import kotlinx.android.synthetic.main.activity_menu.*
 
 

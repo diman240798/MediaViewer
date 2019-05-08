@@ -1,4 +1,4 @@
-package com.nanicky.mediaviewer
+package com.nanicky.mediaviewer.delete
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

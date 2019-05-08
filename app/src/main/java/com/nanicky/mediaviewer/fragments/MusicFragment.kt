@@ -1,4 +1,4 @@
-package com.nanicky.mediaviewer
+package com.nanicky.mediaviewer.fragments
 
 import androidx.fragment.app.Fragment
 

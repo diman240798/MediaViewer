@@ -1,4 +1,4 @@
-package com.nanicky.mediaviewer
+package com.nanicky.mediaviewer.fragments
 
 import android.annotation.SuppressLint
 import android.content.res.Resources
@@ -11,6 +11,10 @@ import android.widget.LinearLayout
 import android.widget.MediaController
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.nanicky.mediaviewer.R
+import com.nanicky.mediaviewer.SharedPreferenceUtil
+import com.nanicky.mediaviewer.db.VideoDetails
+import com.nanicky.mediaviewer.list.VideoListBaseAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.bottom_sheet.*
 import java.util.*
@@ -175,7 +179,7 @@ class VideoFragment : Fragment() {
         Thread {
             val listVideos = ArrayList<VideoDetails>()
 
-            if (allMedia1.isEmpty()) allMedia1 = getAllMedia(context)
+            if (allMedia1.isEmpty()) allMedia1 = getAllVideo(context)
 
             if (allMediaThumbs1.isEmpty()) {
                 for (vid in allMedia1) {
