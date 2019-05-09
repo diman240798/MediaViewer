@@ -4,7 +4,7 @@ import androidx.room.TypeConverter
 
 import java.util.Date
 
-object DateConverter {
+class DateConverter {
 
     @TypeConverter
     fun toDate(dateLong: Long): Date {

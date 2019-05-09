@@ -13,7 +13,7 @@ data class VideoDetails(
         @PrimaryKey()
         var path: String,
         @Ignore
-        var videoThumbNail: Bitmap?,
+        var thumb: Bitmap?,
         var name: String,
         var dateTaken: Date,
         var dateModified: Date,
