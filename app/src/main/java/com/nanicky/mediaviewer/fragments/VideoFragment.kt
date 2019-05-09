@@ -13,11 +13,8 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.nanicky.mediaviewer.R
 import com.nanicky.mediaviewer.SharedPreferenceUtil
-import com.nanicky.mediaviewer.db.VideoDetails
-import com.nanicky.mediaviewer.list.VideoListBaseAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.bottom_sheet.*
-import java.util.*
 
 class VideoFragment : Fragment() {
 
@@ -38,9 +35,11 @@ class VideoFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        listView.startNestedScroll(View.OVER_SCROLL_ALWAYS)
+//        var list: RecyclerView = RecyclerView(this.context!!)
+//
+//        list.stopNestedScroll(View.OVER_SCROLL_ALWAYS)
 
-        setVideos()
+
 //        update.setOnClickListener { getNewVideos(Collections.emptyList(), Collections.emptyList()) }
 
         videoController = MediaController(context)
@@ -170,67 +169,6 @@ class VideoFragment : Fragment() {
 //        getNewVideos(allMedia, allMediaThumbs)
     }
 
-    /*private fun getNewVideos(allMedia: MutableList<VideoDetails>, allMediaThumbs: MutableList<Bitmap>) {
-        progressBar.visibility = View.VISIBLE
-
-        var allMedia1 = ArrayList<VideoDetails>(allMedia)
-        val allMediaThumbs1 = ArrayList<Bitmap>(allMediaThumbs)
-
-        Thread {
-            val listVideos = ArrayList<VideoDetails>()
-
-            if (allMedia1.isEmpty()) allMedia1 = getAllVideo(context)
-
-            if (allMediaThumbs1.isEmpty()) {
-                for (vid in allMedia1) {
-                    Log.d("video", vid.videoPath)
-                    val thumb: Bitmap =
-                            ThumbnailUtils.createVideoThumbnail(vid.videoPath, MediaStore.Images.Thumbnails.MINI_KIND)
-                    allMediaThumbs1.add(thumb)
-                }
-                SharedPreferenceUtil.setVideosThumbs(context, allMediaThumbs1)
-                SharedPreferenceUtil.setVideos(context, allMedia1)
-                SharedPreferenceUtil.setVideosSize(context, allMedia1.size)
-            }
-
-            for (i in 0..(allMedia1.size - 1)) {
-                val thumb: Bitmap = allMediaThumbs1[i]
-                val vid = allMedia1[i]
-                Log.d("video SETTING", vid)
-                listVideos.add(VideoDetails(thumb, vid))
-            }
-
-            val frontListBaseAdapter = VideoListBaseAdapter(context, listVideos)
-
-
-            activity?.runOnUiThread {
-                setVideos(frontListBaseAdapter, listVideos)
-                progressBar.visibility = View.GONE
-            }
-
-        }.start()
-    }*/
-
-    @SuppressLint("RestrictedApi")
-    private fun setVideos(frontListBaseAdapter: VideoListBaseAdapter, listVideos: ArrayList<VideoDetails>) {
-        listView.adapter = frontListBaseAdapter
-        // on Item Click
-        listView.setOnItemClickListener { parent, view, position, id ->
-            val allowed = (bottomSheetBehavior.state == BottomSheetBehavior.STATE_COLLAPSED
-                    || (bottomSheetBehavior.state == BottomSheetBehavior.STATE_HIDDEN && bottomSheetBehavior.isHideable))
-            if (!allowed) return@setOnItemClickListener
-
-            if (bottomSheetBehavior.isHideable) {
-                bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
-                bottomSheetBehavior.isHideable = false
-            }
-
-
-            video_view.setVideoPath(listVideos[position].videoPath)
-            startVideo()
-        }
-        // on Item Click
-    }
 
     private fun startVideo() {
         stop_button.setImageResource(android.R.drawable.ic_media_pause)
@@ -247,3 +185,82 @@ class VideoFragment : Fragment() {
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*private fun getNewVideos(allMedia: MutableList<VideoDetails>, allMediaThumbs: MutableList<Bitmap>) {
+       progressBar.visibility = View.VISIBLE
+
+       var allMedia1 = ArrayList<VideoDetails>(allMedia)
+       val allMediaThumbs1 = ArrayList<Bitmap>(allMediaThumbs)
+
+       Thread {
+           val listVideos = ArrayList<VideoDetails>()
+
+           if (allMedia1.isEmpty()) allMedia1 = getAllVideo(context)
+
+           if (allMediaThumbs1.isEmpty()) {
+               for (vid in allMedia1) {
+                   Log.d("video", vid.path)
+                   val thumb: Bitmap =
+                           ThumbnailUtils.createVideoThumbnail(vid.path, MediaStore.Images.Thumbnails.MINI_KIND)
+                   allMediaThumbs1.add(thumb)
+               }
+               SharedPreferenceUtil.setVideosThumbs(context, allMediaThumbs1)
+               SharedPreferenceUtil.setVideos(context, allMedia1)
+               SharedPreferenceUtil.setVideosSize(context, allMedia1.size)
+           }
+
+           for (i in 0..(allMedia1.size - 1)) {
+               val thumb: Bitmap = allMediaThumbs1[i]
+               val vid = allMedia1[i]
+               Log.d("video SETTING", vid)
+               listVideos.add(VideoDetails(thumb, vid))
+           }
+
+           val frontListBaseAdapter = VideoListBaseAdapter(context, listVideos)
+
+
+           activity?.runOnUiThread {
+               setVideos(frontListBaseAdapter, listVideos)
+               progressBar.visibility = View.GONE
+           }
+
+       }.start()
+   }*/
+
+/*@SuppressLint("RestrictedApi")
+private fun setVideos(frontListBaseAdapter: VideoListBaseAdapter, listVideos: ArrayList<VideoDetails>) {
+    listView.adapter = frontListBaseAdapter
+    // on Item Click
+    listView.setOnItemClickListener { parent, view, position, id ->
+        val allowed = (bottomSheetBehavior.state == BottomSheetBehavior.STATE_COLLAPSED
+                || (bottomSheetBehavior.state == BottomSheetBehavior.STATE_HIDDEN && bottomSheetBehavior.isHideable))
+        if (!allowed) return@setOnItemClickListener
+
+        if (bottomSheetBehavior.isHideable) {
+            bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
+            bottomSheetBehavior.isHideable = false
+        }
+
+
+        video_view.setVideoPath(listVideos[position].path)
+        startVideo()
+    }
+    // on Item Click
+}*/

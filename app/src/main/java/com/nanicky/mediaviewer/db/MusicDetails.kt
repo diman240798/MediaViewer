@@ -4,20 +4,33 @@ import android.graphics.Bitmap
 import androidx.room.Entity
 import androidx.room.Ignore
 import androidx.room.PrimaryKey
-import java.util.*
+import androidx.room.TypeConverters
+import java.util.Date
 
-@Entity
+@Entity(tableName = "MusicDetails")
+@TypeConverters(DateConverter::class)
 data class MusicDetails(
         @PrimaryKey()
-        val videoPath: String,
+        var path: String,
+        @Ignore
         var musicThumbNail: Bitmap?,
-        val name: String,
-        val dateAdded: Date,
-        val dateModified: Date,
-        val album: String,
-        val artist: String,
-        val composer: String,
-        val mimeType: String
+        var name: String,
+        var dateAdded: Date,
+        var dateModified: Date,
+        var album: String,
+        var artist: String,
+        var composer: String,
+        var duration: String,
+        var mimeType: String
 ) {
+    constructor() : this("", null, "",
+            Date(), Date(), "", "",
+            "", "", "")
 
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+        other as VideoDetails
+        return this.path != other.path
+    }
 }

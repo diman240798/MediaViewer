@@ -1,35 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="video"
+            type="com.nanicky.mediaviewer.db.VideoDetails" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="100dp"
         android:orientation="vertical"
         android:layout_margin="10dp">
 
-    <ImageView
-            android:id="@+id/adminpic1"
+        <ImageView
+            android:id="@+id/video_thumb"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:src="@android:drawable/ic_input_add" app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent" android:layout_marginTop="8dp"
-            android:layout_marginStart="8dp"/>
+            tools:src="@android:drawable/ic_input_add"
+            android:srcBitmap="@{video.thumb}"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="8dp" />
 
-    <TextView
+        <TextView
             android:textColor="@color/videoItemTextColor"
-            android:id="@+id/msgtype1"
+            android:id="@+id/video_path"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:text="MsgType"
-            app:layout_constraintTop_toTopOf="@+id/adminpic1" app:layout_constraintStart_toEndOf="@+id/adminpic1"
-            android:layout_marginStart="8dp" app:layout_constraintBottom_toBottomOf="@+id/adminpic1"
-            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"/>
-    <TextView
+            android:text="@{video.path}"
+            app:layout_constraintTop_toTopOf="@+id/video_thumb"
+            app:layout_constraintStart_toEndOf="@+id/video_thumb"
+            android:layout_marginStart="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/video_thumb"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="8dp" />
+
+        <TextView
             android:textColor="@color/videoItemTextColor"
-            android:text="2:42:33"
+            tools:text="2:42:33"
+            android:text="@{video.duration}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/textView" app:layout_constraintEnd_toEndOf="@+id/msgtype1" android:layout_marginEnd="4dp"
-            android:layout_marginBottom="4dp" app:layout_constraintBottom_toBottomOf="@+id/msgtype1"/>
+            android:id="@+id/video_time"
+            app:layout_constraintEnd_toEndOf="@+id/video_path"
+            android:layout_marginEnd="4dp"
+            android:layout_marginBottom="4dp"
+            app:layout_constraintBottom_toBottomOf="@+id/video_path" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

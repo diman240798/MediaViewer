@@ -1,6 +1,7 @@
 package com.nanicky.mediaviewer.util
 
 import android.content.Context
+import android.media.ThumbnailUtils
 import android.provider.MediaStore
 import com.nanicky.mediaviewer.db.MusicDetails
 import com.nanicky.mediaviewer.db.VideoDetails
@@ -17,6 +18,7 @@ fun getAllVideo(context: Context?): ArrayList<VideoDetails> {
             MediaStore.Video.Media.DATE_TAKEN,
             MediaStore.Video.Media.DATE_MODIFIED,
             MediaStore.Video.Media.RESOLUTION,
+            MediaStore.Video.VideoColumns.DURATION,
             MediaStore.Video.Media.MIME_TYPE
     )
     val cursor =
@@ -37,10 +39,14 @@ fun getAllVideo(context: Context?): ArrayList<VideoDetails> {
             val dateTaken = Date(currentDetail[3])
             val dateModified = Date(currentDetail[4])
             val resolution = currentDetail[5]
+            val duration = currentDetail[5]
             val mimeType = currentDetail[6]
 
-            val videoThumbNail = null
-            val element = VideoDetails(path, videoThumbNail, name, dateAdded, dateTaken, dateModified, resolution, mimeType)
+            val videoThumbNail = ThumbnailUtils.createVideoThumbnail(path, MediaStore.Images.Thumbnails.MINI_KIND)
+            val element = VideoDetails(
+                    path, videoThumbNail, name,
+                    dateAdded, dateTaken, dateModified,
+                    resolution, duration, mimeType)
             result.add(element)
 
         } while (cursor.moveToNext())
@@ -64,6 +70,7 @@ fun getAllMusic(context: Context?): ArrayList<MusicDetails> {
             MediaStore.Audio.Media.ALBUM,
             MediaStore.Audio.Media.ARTIST,
             MediaStore.Audio.Media.COMPOSER,
+            MediaStore.Audio.AudioColumns.DURATION,
             MediaStore.Audio.Media.MIME_TYPE
     )
 
@@ -86,10 +93,14 @@ fun getAllMusic(context: Context?): ArrayList<MusicDetails> {
             val album = currentDetail[4]
             val artist = currentDetail[5]
             val composer = currentDetail[6]
+            val duration = currentDetail[6]
             val mimeType = currentDetail[7]
 
             val musicThumbNail = null
-            val element = MusicDetails(path, musicThumbNail, name, dateAdded, dateModified, album, artist, composer, mimeType)
+            val element = MusicDetails(
+                    path, musicThumbNail, name,
+                    dateAdded, dateModified, album,
+                    artist, composer, duration, mimeType)
             result.add(element)
 
         } while (cursor.moveToNext())
