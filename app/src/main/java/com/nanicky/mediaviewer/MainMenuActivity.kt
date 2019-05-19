@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.nanicky.mediaviewer.fragments.MusicFragment
 import com.nanicky.mediaviewer.fragments.VideoFragment
-import kotlinx.android.synthetic.main.activity_menu.*
+import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainMenuActivity : AppCompatActivity() {
@@ -12,7 +12,7 @@ class MainMenuActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_menu)
+        setContentView(R.layout.activity_main)
 
         setupViewPager()
 
