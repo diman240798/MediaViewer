@@ -1,4 +1,4 @@
-package com.nanicky.mediaviewer.db
+package com.nanicky.mediaviewer.db.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
@@ -7,6 +7,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
+import com.nanicky.mediaviewer.db.model.VideoDetails
 
 @Dao
 interface VideoDao {
@@ -24,5 +25,8 @@ interface VideoDao {
     fun delete(post: VideoDetails)
 
     @Query("SELECT * FROM VideoDetails")
-    fun findAll(): LiveData<List<VideoDetails>>
+    fun findAllLiveData(): LiveData<List<VideoDetails>>
+
+    @Query("SELECT * FROM VideoDetails")
+    fun findAll(): List<VideoDetails>
 }

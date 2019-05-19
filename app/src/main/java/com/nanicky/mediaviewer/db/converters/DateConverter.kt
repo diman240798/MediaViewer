@@ -1,4 +1,4 @@
-package com.nanicky.mediaviewer.db
+package com.nanicky.mediaviewer.db.converters
 
 import androidx.room.TypeConverter
 

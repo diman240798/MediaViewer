@@ -1,7 +1,8 @@
-package com.nanicky.mediaviewer.db
+package com.nanicky.mediaviewer.db.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
+import com.nanicky.mediaviewer.db.model.MusicDetails
 
 @Dao
 interface MusicDao {

@@ -6,7 +6,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.nanicky.mediaviewer.R
 import com.nanicky.mediaviewer.databinding.VideoItemBinding
-import com.nanicky.mediaviewer.db.VideoDetails
+import com.nanicky.mediaviewer.db.model.VideoDetails
 
 class VideoAdapter(var data: MutableList<VideoDetails>) : RecyclerView.Adapter<VideoViewHolder>() {
 

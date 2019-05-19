@@ -1,29 +1,31 @@
-package com.nanicky.mediaviewer.db
+package com.nanicky.mediaviewer.db.model
 
 import android.graphics.Bitmap
 import androidx.room.Entity
 import androidx.room.Ignore
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
-import java.util.*
+import com.nanicky.mediaviewer.db.converters.DateConverter
+import java.util.Date
 
-@Entity(tableName = "VideoDetails")
+@Entity(tableName = "MusicDetails")
 @TypeConverters(DateConverter::class)
-data class VideoDetails(
+data class MusicDetails(
         @PrimaryKey()
         var path: String,
         @Ignore
-        var thumb: Bitmap?,
+        var musicThumbNail: Bitmap?,
         var name: String,
-        var dateTaken: Date,
-        var dateModified: Date,
         var dateAdded: Date,
-        var resolution: String,
+        var dateModified: Date,
+        var album: String,
+        var artist: String,
+        var composer: String,
         var duration: String,
         var mimeType: String
 ) {
     constructor() : this("", null, "",
-            Date(), Date(), Date(),
+            Date(), Date(), "", "",
             "", "", "")
 
     override fun equals(other: Any?): Boolean {

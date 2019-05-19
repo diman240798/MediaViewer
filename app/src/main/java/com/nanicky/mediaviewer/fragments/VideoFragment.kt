@@ -10,16 +10,21 @@ import android.widget.MediaController
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.nanicky.mediaviewer.R
-import com.nanicky.mediaviewer.SharedPreferenceUtil
+import com.nanicky.mediaviewer.db.DataBase
+import com.nanicky.mediaviewer.db.dao.VideoDao
+import com.nanicky.mediaviewer.db.model.VideoDetails
+import com.nanicky.mediaviewer.repo.VideoRepository
 import kotlinx.android.synthetic.main.fragment_video.*
 import kotlinx.android.synthetic.main.bottom_sheet.*
 import com.nanicky.mediaviewer.util.onBottomSheetSlide;
 import com.nanicky.mediaviewer.util.onBottomSheetStateChanged;
+import java.lang.RuntimeException
 
 class VideoFragment : Fragment() {
-
+    // fields
+    private lateinit var videoRepository: VideoRepository
+    // viewa
     private lateinit var bottomSheetBehavior: BottomSheetBehavior<LinearLayout>
-
     private lateinit var videoController: MediaController
 
 
@@ -46,6 +51,15 @@ class VideoFragment : Fragment() {
         videoController.visibility = View.GONE
 
         video_view.setMediaController(videoController)
+
+        val context = context ?: throw RuntimeException("NoContext")
+        val appDataBase = DataBase.getAppDataBase(context)
+
+        val videoDao = appDataBase!!.videoDao()
+
+        videoRepository = VideoRepository(videoDao)
+
+        val videos : List<VideoDetails> = videoRepository.getAllVideos(context)
 
         setUpFab()
         setUpBottomSheetView()
@@ -95,9 +109,6 @@ class VideoFragment : Fragment() {
 
     private fun setVideos() {
 
-        val allMedia = SharedPreferenceUtil.getVideos(context)
-        val allMediaThumbs = SharedPreferenceUtil.getVideosThumbs(context)
-
 //        getNewVideos(allMedia, allMediaThumbs)
     }
 
@@ -144,7 +155,7 @@ class VideoFragment : Fragment() {
        Thread {
            val listVideos = ArrayList<VideoDetails>()
 
-           if (allMedia1.isEmpty()) allMedia1 = getAllVideo(context)
+           if (allMedia1.isEmpty()) allMedia1 = getVideoFromDevice(context)
 
            if (allMediaThumbs1.isEmpty()) {
                for (vid in allMedia1) {

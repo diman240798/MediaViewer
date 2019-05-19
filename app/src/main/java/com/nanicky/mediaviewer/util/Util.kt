@@ -3,12 +3,12 @@ package com.nanicky.mediaviewer.util
 import android.content.Context
 import android.media.ThumbnailUtils
 import android.provider.MediaStore
-import com.nanicky.mediaviewer.db.MusicDetails
-import com.nanicky.mediaviewer.db.VideoDetails
+import com.nanicky.mediaviewer.db.model.MusicDetails
+import com.nanicky.mediaviewer.db.model.VideoDetails
 import java.util.*
 import kotlin.collections.ArrayList
 
-fun getAllVideo(context: Context?): ArrayList<VideoDetails> {
+fun getVideoFromDevice(context: Context?): MutableList<VideoDetails> {
     val result = ArrayList<VideoDetails>()
 
     val projection = arrayOf(

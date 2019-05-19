@@ -6,7 +6,7 @@
     <data>
         <variable
             name="video"
-            type="com.nanicky.mediaviewer.db.VideoDetails" />
+            type="com.nanicky.mediaviewer.db.model.VideoDetails" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
